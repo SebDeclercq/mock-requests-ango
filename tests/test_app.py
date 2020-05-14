@@ -34,6 +34,6 @@ class TestApp:
         self, app: App, monkeypatch: MonkeyPatch
     ) -> None:
         mock: Mock = Mock()
-        mock.return_value.json = lambda: fake_resp
+        mock.return_value.json = lambda: fake_resp  # OR mock.return_value.json.return_value = fake_resp
         monkeypatch.setattr(requests, 'get', mock)
         assert app.get('http://afnor.org') == fake_resp
